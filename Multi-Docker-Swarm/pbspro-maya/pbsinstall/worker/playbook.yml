@@ -1,0 +1,14 @@
+---
+- hosts: worker
+  remote_user: root
+  vars:   
+  tasks: 
+   - name: 复制安装脚本到worker
+     copy:
+         src=installpbs.sh
+         dest=/tmp/installpbs.sh
+         owner=root
+         group=root
+   - name: install pbs
+     shell: /bin/bash /tmp/installpbs.sh {{ master }}
+    
